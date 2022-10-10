@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "12de141f-1c65-403e-95ff-69f67a19e6aa",
+		"name": "Parameter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "community",
+			"item": [
+				{
+					"name": "agro1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check that HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check that DS_param id is 800\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.weather[0].id).to.eql(parseInt(pm.environment.get(\"DS_param\")));",
+									"});",
+									"pm.test(\"Check that DSNAME main is Clear\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.weather[0].main).to.eql(pm.environment.get(\"DSNAME\"));",
+									"});",
+									"pm.test(\"Check that TC_CUF_icon is 01n\", function () {",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.weather[0].icon).to.eql(pm.environment.get(\"TC_CUF_icon\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://samples.openweathermap.org/agro/1.0/weather?lat=35&lon=139&appid=b1b15e88fa797225412429c1c50c122a1",
+							"protocol": "http",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"agro",
+								"1.0",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "35"
+								},
+								{
+									"key": "lon",
+									"value": "139"
+								},
+								{
+									"key": "appid",
+									"value": "b1b15e88fa797225412429c1c50c122a1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "premium",
+			"item": [
+				{
+					"name": "agro2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check that HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check that CPG_CUF_humidity is 1000\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.main.humidity).to.eql(parseInt(pm.environment.get(\"CPG_CUF_humidity\")));",
+									"});",
+									"pm.test(\"Check that IT_CUF_sealevel is 1031.04\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.main.sea_level).to.eql(parseFloat(pm.environment.get(\"IT_CUF_sealevel\")));",
+									"});",
+									"pm.test(\"Check that TS_CUF_grndlevel is 1021.39\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.main.grnd_level).to.eql(parseFloat(pm.environment.get(\"TS_CUF_grnd_level\")));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://samples.openweathermap.org/agro/1.0/weather?polyid=5aaa8052cbbbb5000b73ff66&appid=b1b15e88fa797225412429c1c50c122a1",
+							"protocol": "http",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"agro",
+								"1.0",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "polyid",
+									"value": "5aaa8052cbbbb5000b73ff66"
+								},
+								{
+									"key": "appid",
+									"value": "b1b15e88fa797225412429c1c50c122a1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

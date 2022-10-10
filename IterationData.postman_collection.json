@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "a019fbc8-ae57-4221-a37e-7dbaf15b8547",
+		"name": "IterationData",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pressure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check that HTTP status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Check that the pressure exist', () => {",
+							"    let data = pm.response.json().data.find(a => a.pressure === parseFloat(pm.iterationData.get(\"pressure\")));",
+							"    pm.expect(data).exist;",
+							"     ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/pollution/v1/co/0.0,10.0/2016-12-25T01:04:08Z.json?appid=b1b15e88fa797225412429c1c50c122a1",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"pollution",
+						"v1",
+						"co",
+						"0.0,10.0",
+						"2016-12-25T01:04:08Z.json"
+					],
+					"query": [
+						{
+							"key": "appid",
+							"value": "b1b15e88fa797225412429c1c50c122a1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

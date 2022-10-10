@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "acf97b73-b759-4e95-8f7a-ac2bed4815f2",
+		"name": "Globals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "agrosoil",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check that HTTP status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Check that dt is 1523188800\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.dt).to.eql(parseInt(pm.globals.get(\"dt\")));",
+							"});",
+							"pm.test(\"Check that t10 is 274.51\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.t10).to.eql(parseFloat(pm.globals.get(\"t10\")));",
+							"});",
+							"pm.test(\"Check that moisture is 0.161\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.moisture).to.eql(parseFloat(pm.globals.get(\"moisture\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://samples.openweathermap.org/agro/1.0/soil?lat=38.410&lon=-98.349&appid=b1b15e88fa797225412429c1c50c122a1",
+					"protocol": "http",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"agro",
+						"1.0",
+						"soil"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "38.410"
+						},
+						{
+							"key": "lon",
+							"value": "-98.349"
+						},
+						{
+							"key": "appid",
+							"value": "b1b15e88fa797225412429c1c50c122a1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

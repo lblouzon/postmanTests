@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "d579a4d6-5f4d-4c1d-97f6-7a59dccf034e",
+		"name": "Standard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request_ok",
+			"item": [
+				{
+					"name": "forecast5d",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check that HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check that cnt is equal to 40\", function () {",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.cnt).to.eql(40);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=b1b15e88fa797225412429c1c50c122a1",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"forecast"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "524901"
+								},
+								{
+									"key": "appid",
+									"value": "b1b15e88fa797225412429c1c50c122a1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request_ko",
+			"item": [
+				{
+					"name": "history404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check that HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/history/nocity?id=2885679&type=hour&appid=b1b15e88fa797225412429c1c50c122a1",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"history",
+								"nocity"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2885679"
+								},
+								{
+									"key": "type",
+									"value": "hour"
+								},
+								{
+									"key": "appid",
+									"value": "b1b15e88fa797225412429c1c50c122a1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request_subfolder",
+			"item": [
+				{
+					"name": "ok",
+					"item": [
+						{
+							"name": "moscow_forecast",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Check that HTTP status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Check that city is Moscow\", function () {",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.city.name).to.eql(\"Moscow\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://samples.openweathermap.org/data/2.5/forecast/daily?id=524901&lang=zh_cn&appid=b1b15e88fa797225412429c1c50c122a1",
+									"protocol": "http",
+									"host": [
+										"samples",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"forecast",
+										"daily"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "524901"
+										},
+										{
+											"key": "lang",
+											"value": "zh_cn"
+										},
+										{
+											"key": "appid",
+											"value": "b1b15e88fa797225412429c1c50c122a1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ko",
+					"item": [
+						{
+							"name": "history1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Check that HTTP status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Check that city_id is 288\", function () {",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.city_id).to.eql(288);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://samples.openweathermap.org/data/2.5/history/city?id=2885679&type=hour&appid=b1b15e88fa797225412429c1c50c122a1",
+									"protocol": "http",
+									"host": [
+										"samples",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"history",
+										"city"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2885679"
+										},
+										{
+											"key": "type",
+											"value": "hour"
+										},
+										{
+											"key": "appid",
+											"value": "b1b15e88fa797225412429c1c50c122a1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "suite",
+					"item": [
+						{
+							"name": "airpollution_ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Check that HTTP status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Check that the first pressure is equal to 1000\", function () {",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data[0].pressure).to.eql(1000);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://samples.openweathermap.org/pollution/v1/co/0.0,10.0/2016-12-25T01:04:08Z.json?appid=b1b15e88fa797225412429c1c50c122a1",
+									"protocol": "http",
+									"host": [
+										"samples",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"pollution",
+										"v1",
+										"co",
+										"0.0,10.0",
+										"2016-12-25T01:04:08Z.json"
+									],
+									"query": [
+										{
+											"key": "appid",
+											"value": "b1b15e88fa797225412429c1c50c122a1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "airpollution2_ko",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Check that HTTP status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Check that the time is equal to 2020-01-26T01:04:15Z\", function () {",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data[0].pressure).to.eql(\"2020-01-26T01:04:15Z0\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://samples.openweathermap.org/pollution/v1/co/0.0,10.0/2016Z.json?appid=b1b15e88fa797225412429c1c50c122a1",
+									"protocol": "http",
+									"host": [
+										"samples",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"pollution",
+										"v1",
+										"co",
+										"0.0,10.0",
+										"2016Z.json"
+									],
+									"query": [
+										{
+											"key": "appid",
+											"value": "b1b15e88fa797225412429c1c50c122a1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "rootairpoll_ko",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check that HTTP status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Check that precision is equal to -5-07\", function () {",
+							"",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[0].precision).to.eql(\"-5-07\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://samples.openweathermap.org/pollution/v1/co/0.0,10.0/current.json?appid=b1b15e88fa797225412429c1c50c122a1",
+					"protocol": "http",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"pollution",
+						"v1",
+						"co",
+						"0.0,10.0",
+						"current.json"
+					],
+					"query": [
+						{
+							"key": "appid",
+							"value": "b1b15e88fa797225412429c1c50c122a1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
